@@ -1,0 +1,36 @@
+<div data-ng-controller="EventsListBlock.Controller" class="umb-pane">
+	<div id="eventsListBlock">
+		<div class="umb-box">
+			<div class="block-form umb-box-content">
+				<div class="umb-property">
+					<div class="control-group umb-control-group">
+						<div class="umb-el-wrap">
+							<label class="control-label">
+								<span>Events data source</span>
+							</label>
+							<div class="controls controls-row">
+								<div>
+									<button type="button" ng-click="control.openOverlay()">Select datasource</button>
+
+									<umb-overlay ng-if="control.overlay.show"
+												 model="control.overlay"
+												 view="control.overlay.view"
+												 position="right">
+									</umb-overlay>
+								</div>
+								<div>
+									<div ng-show="control.value.dataSources.length > 0">
+										<div ng-repeat="item in control.value.dataSources">
+											<i class="icon {{item.icon}}"></i> {{item.name}}
+											<a href="#" prevent-default ng-click="remove($index)"><i class="icon icon-delete red"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

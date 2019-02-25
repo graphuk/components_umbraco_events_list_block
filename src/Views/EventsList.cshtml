@@ -1,0 +1,19 @@
+@using System.Web.Mvc.Html
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<Graph.Components.EventsListBlock.EventsListBlockModel>
+
+<div>
+	@foreach (var item in Model.Events)
+	{
+		if (item.Image != null)
+		{
+			<img src="@item.Image">
+		}
+
+		<a href="@item.Url">@item.Title</a>
+		<div>@item.Description</div>
+		<div>@item.Location</div>
+		<div>@item.Date.ToString("dd MMM yyyy")</div>
+	}
+
+	@Html.Partial("/App_Plugins/EventsListBlock/Views/EventsListNavigation.cshtml", Model.PageNavigationModel)
+</div>
