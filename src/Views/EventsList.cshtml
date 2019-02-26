@@ -25,7 +25,18 @@
 						@item.StartDate.ToString("dd MMM yyyy")
 						@if (item.EndDate.HasValue)
 						{
-							<span> - @item.EndDate.Value.ToString("dd MMM yyyy")</span>
+							if (item.StartDate.Date == item.EndDate.Value.Date)
+							{
+  								<span>, @item.StartDate.ToString("hh:mm tt") - @item.EndDate.Value.ToString("hh:mm tt")</span>
+							}
+							else
+							{
+								<span> - @item.EndDate.Value.ToString("dd MMM yyyy ")</span>
+							}
+						}
+						else
+						{
+							<span> @item.StartDate.ToString("hh:mm tt")</span>
 						}
 					</time>
 				</div>
