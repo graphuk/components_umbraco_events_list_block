@@ -27,7 +27,8 @@ namespace Graph.Components.EventsListBlock
 							Title = x.GetPropertyValue<string>(EventsListBlockConfig.Title),
 							Description = x.GetPropertyValue<string>(EventsListBlockConfig.Summary),
 							Url = x.Url,
-							Date = x.GetPropertyValue<DateTime>(EventsListBlockConfig.Date),
+							StartDate = x.GetPropertyValue<DateTime>(EventsListBlockConfig.StartDate),
+							EndDate = x.GetPropertyValue<DateTime>(EventsListBlockConfig.EndDate),
 							Image = x.GetPropertyValue<IPublishedContent>(EventsListBlockConfig.Image)?.Url,
 							Location = x.GetPropertyValue<string>(EventsListBlockConfig.Location)
 						}));
@@ -36,7 +37,7 @@ namespace Graph.Components.EventsListBlock
 				totalEventsCount = allEvents.Count;
 			}
 
-			var events = allEvents.OrderByDescending(x => x.Date)
+			var events = allEvents.OrderByDescending(x => x.StartDate)
 				.Skip((page - 1) * EventsListBlockConfig.PageSize)
 				.Take(EventsListBlockConfig.PageSize);
 
