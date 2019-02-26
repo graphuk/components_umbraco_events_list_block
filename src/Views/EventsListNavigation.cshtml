@@ -14,33 +14,36 @@
 
 }
 
-<div class="pagination">
-	@if (Model.HasPrevPage)
-	{
-		<a href="@GetUrl(Model.CurrentPage - 1)" class="pagination__item"><</a>
-	}
-
-	@foreach (var p in Model.Pages)
-	{
-		if (p.PageId == Model.CurrentPage)
+@if (Model.PageSize < pageCount)
+{
+	<div class="pagination">
+		@if (Model.HasPrevPage)
 		{
-			<span class="pagination__item pagination__item_active">@p.PageId</span>
+			<a href="@GetUrl(Model.CurrentPage - 1)" class="pagination__item"><</a>
 		}
-		else
+
+		@foreach (var p in Model.Pages)
 		{
-			if (p.PageId == 0)
+			if (p.PageId == Model.CurrentPage)
 			{
-				<span class="pagination__dots">...</span>
+				<span class="pagination__item pagination__item_active">@p.PageId</span>
 			}
 			else
 			{
-				<a class="pagination__item" href="@GetUrl(p.PageId)">@p.PageId</a>
+				if (p.PageId == 0)
+				{
+					<span class="pagination__dots">...</span>
+				}
+				else
+				{
+					<a class="pagination__item" href="@GetUrl(p.PageId)">@p.PageId</a>
+				}
 			}
 		}
-	}
 
-	@if (Model.HasNextPage)
-	{
-		<a href="@GetUrl(Model.CurrentPage + 1)" class="pagination__item pagination__item_next">></a>
-	}
-</div>
+		@if (Model.HasNextPage)
+		{
+			<a href="@GetUrl(Model.CurrentPage + 1)" class="pagination__item pagination__item_next">></a>
+		}
+	</div>
+}

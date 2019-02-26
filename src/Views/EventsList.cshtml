@@ -1,19 +1,39 @@
+@using System;
 @using System.Web.Mvc.Html
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<Graph.Components.EventsListBlock.EventsListBlockModel>
 
-<div>
-	@foreach (var item in Model.Events)
-	{
-		if (item.Image != null)
+<div class="event-list">
+	<div class="event-list__container">
+		<div class="event-list__items">
+		@foreach (var item in Model.Events)
 		{
-			<img src="@item.Image">
+			<div class="event">
+				<div class="event__image-container">
+					<div class="event__media">
+						@if (item.Image != null) {
+							<img class="event__img" src="@item.Image">
+						}
+					</div>
+				</div>
+				<div class="event__content">
+					<h3 class="event__title">
+						<a class="event__link" href="@item.Url">@item.Title</a>
+					</h3>
+					<div class="event__description">@item.Description</div>
+					<address class="event__location">@item.Location</address>
+					<time class="event__date">
+						@item.StartDate.ToString("dd MMM yyyy")
+						@if (item.EndDate.HasValue)
+						{
+							<span> - @item.EndDate.Value.ToString("dd MMM yyyy")</span>
+						}
+					</time>
+				</div>
+			</div>
 		}
-
-		<a href="@item.Url">@item.Title</a>
-		<div>@item.Description</div>
-		<div>@item.Location</div>
-		<div>@item.Date.ToString("dd MMM yyyy")</div>
-	}
-
-	@Html.Partial("/App_Plugins/EventsListBlock/Views/EventsListNavigation.cshtml", Model.PageNavigationModel)
+		</div>
+		<div class="event-list__navigation">
+			@Html.Partial("/App_Plugins/EventsListBlock/Views/EventsListNavigation.cshtml", Model.PageNavigationModel)
+		</div>
+	</div>
 </div>

@@ -1,0 +1,31 @@
+@desktopSideSpace: 40px;
+@tabletSideSpace: 50px;
+@mobileSideSpace: 30px;
+@maxContentWidth: 1170px;
+
+@tablet: ~"(min-width: 736px)";
+@desktop: ~"(min-width: 1025px)";
+
+.event-list {
+	padding: 0 @mobileSideSpace;
+
+	@media @tablet {
+		padding: 0 @tabletSideSpace;
+	}
+
+	@media @desktop {
+		padding: 0 @desktopSideSpace;
+	}
+
+	&__container {
+		text-align: left;
+		max-width: @maxContentWidth;
+		box-sizing: border-box;
+		margin: 0 auto;
+		padding: 40px 0 30px;
+
+		@media @desktop {
+			padding: 100px 0;
+		}
+	}
+}
