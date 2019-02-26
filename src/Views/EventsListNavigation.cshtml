@@ -1,0 +1,46 @@
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<Graph.Components.EventsListBlock.PageNavigationModel>
+
+@{
+	var pageCount = Model.ItemsAmount;
+	var itemsCount = pageCount < Model.PageSize ? pageCount : Model.PageSize;
+}
+@functions
+{
+
+	string GetUrl(int page)
+	{
+		return $"?page={page}";
+	}
+
+}
+
+<div class="pagination">
+	@if (Model.HasPrevPage)
+	{
+		<a href="@GetUrl(Model.CurrentPage - 1)" class="pagination__item"><</a>
+	}
+
+	@foreach (var p in Model.Pages)
+	{
+		if (p.PageId == Model.CurrentPage)
+		{
+			<span class="pagination__item pagination__item_active">@p.PageId</span>
+		}
+		else
+		{
+			if (p.PageId == 0)
+			{
+				<span class="pagination__dots">...</span>
+			}
+			else
+			{
+				<a class="pagination__item" href="@GetUrl(p.PageId)">@p.PageId</a>
+			}
+		}
+	}
+
+	@if (Model.HasNextPage)
+	{
+		<a href="@GetUrl(Model.CurrentPage + 1)" class="pagination__item pagination__item_next">></a>
+	}
+</div>

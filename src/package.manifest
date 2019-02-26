@@ -1,0 +1,15 @@
+{
+	"gridEditors": [
+		{
+			"name": "Events List Data",
+			"alias": "EventsListBlock",
+			"view": "/App_Plugins/EventsListBlock/EventsListBlockView.html",
+			"render": "/App_Plugins/EventsListBlock/Views/EventsListBlockRender.cshtml",
+			"icon": "icon-list"
+		}
+	],
+	"javascript": [
+		"/App_Plugins/EventsListBlock/EventsListBlock.Controller.js",
+		"/App_Plugins/EventsListBlock/EventsListBlock.Resources.js"
+	]
+}
